@@ -1,0 +1,605 @@
+/* ==========================================================================
+   andy1love.com — static rebuild of the Squarespace site (Brine template)
+   Fonts: Oswald stands in for DIN Condensed, Montserrat for Proxima Nova
+   (the originals are Adobe fonts licensed through Squarespace).
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/oswald-var.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --heading-font: 'Oswald', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    'Yu Gothic', Meiryo, 'Helvetica Neue', Arial, sans-serif;
+  --body-font: 'Montserrat', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+    'Yu Gothic', Meiryo, 'Helvetica Neue', Arial, sans-serif;
+  --text: rgba(82, 82, 82, 0.6);
+  --nav-text: rgba(82, 82, 82, 0.7);
+  --nav-faded: rgba(82, 82, 82, 0.28);
+  --dark: #272727;
+  --pad: 75px; /* 65px content padding + 10px site border, like the original */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: var(--body-font);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 2.2;
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  color: #000;
+}
+
+h1 {
+  font-size: 38px;
+  line-height: 1.2;
+  margin: 0 0 24px;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 0 0 20px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1930px;
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  padding-top: 45px;
+  text-align: center;
+}
+
+.branding {
+  display: inline-block;
+  line-height: 0;
+}
+
+.branding img {
+  width: 55px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.site-nav {
+  margin-top: 33px;
+  padding-bottom: 35px;
+  font-size: 9.75px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.4em 0.85em;
+  color: var(--nav-text);
+  transition: color 170ms ease-in-out;
+  white-space: nowrap;
+}
+
+/* "Spotlight" hover from the original: hovering the nav fades every item
+   except the one under the cursor */
+.site-nav:hover a {
+  color: var(--nav-faded);
+}
+
+.site-nav:hover a:hover {
+  color: var(--nav-text);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile menu overlay
+   -------------------------------------------------------------------------- */
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #fff;
+  transform: translateX(-102%);
+  transition: transform 0.25s ease;
+  overflow-y: auto;
+}
+
+body.menu-open .mobile-overlay {
+  transform: none;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-overlay nav {
+  padding: 100px 42px 60px;
+}
+
+.mobile-overlay nav a {
+  display: block;
+  padding: 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  line-height: 1.8;
+  color: var(--nav-text);
+}
+
+.overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  line-height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons (outline style, like the original)
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--body-font);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  background: transparent;
+  border: 2px solid #222;
+  color: #222;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.12s linear, color 0.12s linear;
+}
+
+.btn:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.btn-small {
+  font-size: 9px;
+  padding: 13px 26px;
+  line-height: 1;
+}
+
+.btn-submit {
+  font-size: 13px;
+  padding: 23px 39px;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Home: hero + newsletter
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-top: 125px;
+  padding-bottom: 135px;
+  text-align: center;
+}
+
+.hero h2:first-of-type {
+  margin-top: 36px;
+}
+
+.newsletter {
+  margin-top: 190px;
+}
+
+.newsletter-title {
+  margin: 0 0 34px;
+  color: var(--dark);
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.newsletter-form input {
+  width: 242px;
+  padding: 1em;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: normal;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease-out;
+}
+
+.newsletter-form input:focus {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-newsletter {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding: 0 2.2em;
+  border-radius: 0;
+  border-color: var(--dark);
+  color: var(--dark);
+}
+
+.btn-newsletter:hover {
+  background-color: var(--dark);
+}
+
+.newsletter-note {
+  margin: 30px 0 0;
+  font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   Home: video
+   -------------------------------------------------------------------------- */
+
+.video-wrap {
+  aspect-ratio: 16 / 9;
+  margin: 0 0 20px;
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Home: linked cards (2-up grid on the original 12-column layout)
+   -------------------------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  padding-top: 110px;
+}
+
+.card:nth-child(1) {
+  grid-column: 2 / 6;
+}
+
+.card:nth-child(2) {
+  grid-column: 7 / 11;
+}
+
+.card h2 {
+  margin: 46px 0 0;
+}
+
+.card p {
+  margin: 14px 0 0;
+}
+
+.card .btn-small {
+  margin-top: 40px;
+}
+
+.card-img {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Home: contact
+   -------------------------------------------------------------------------- */
+
+.contact {
+  padding-top: 130px;
+  text-align: center;
+}
+
+.contact .contact-sub {
+  margin: 0;
+}
+
+.contact-form {
+  margin-top: 42px;
+  text-align: left;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #999;
+  margin-bottom: 7px;
+}
+
+.form-field .req {
+  font-size: 11px;
+  color: #b9b9b9;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  background: #fbfbfb;
+  border: 1px solid #b3b3b3;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 15px;
+  color: #333;
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #666;
+}
+
+.form-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.contact-form .btn-submit {
+  margin-top: 10px;
+}
+
+.form-status {
+  font-size: 13px;
+  margin: 16px 0 0;
+  min-height: 1.6em;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 75px 20px 110px;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social a {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #c9c9c9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a4a4a;
+  transition: background-color 0.15s linear, color 0.15s linear,
+    border-color 0.15s linear;
+}
+
+.social a:hover {
+  background: #4a4a4a;
+  border-color: #4a4a4a;
+  color: #fff;
+}
+
+.social svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Subpages (text pages + MCU poster page)
+   -------------------------------------------------------------------------- */
+
+.page-main {
+  padding-top: 15px;
+  padding-bottom: 40px;
+}
+
+.page-main h2 {
+  margin: 50px 0 25px;
+}
+
+.rich p {
+  margin: 0 0 1em;
+}
+
+.rich ul {
+  margin: 0 0 1em;
+  padding-left: 3em;
+  list-style: disc;
+}
+
+.rich li p {
+  margin: 0;
+}
+
+.mcu-img {
+  width: 100%;
+  margin: 15px 0 40px;
+}
+
+/* 404 */
+.notfound {
+  padding: 120px 0 60px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  :root {
+    --pad: 58px;
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --pad: 46px;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --pad: 30px;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .branding img {
+    width: 42px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    line-height: 0;
+  }
+
+  .hero {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .newsletter {
+    margin-top: 100px;
+  }
+
+  .cards {
+    display: block;
+    padding-top: 60px;
+  }
+
+  .card {
+    max-width: 480px;
+    margin: 0 auto 70px;
+  }
+
+  .contact {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pad: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter-form input {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .btn-newsletter {
+    padding: 1em 2.2em;
+  }
+}
