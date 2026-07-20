@@ -33,7 +33,15 @@ var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/abcdwxyz'
   }
 
   // ---------- hover-swap text (tap to flip on touch devices) ----------
-  if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+  // Exact complement of the CSS `@media (hover: hover) and (pointer: fine)`
+  // that drives the :hover swap, so a device gets one mechanism, never both:
+  // with both, iOS's sticky emulated :hover cancels out the class toggle and
+  // taps appear to do nothing.
+  var finePointer =
+    window.matchMedia &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!finePointer) {
     Array.prototype.forEach.call(document.querySelectorAll('.flip'), function (el) {
       el.addEventListener('click', function () {
         el.classList.toggle('is-flipped');

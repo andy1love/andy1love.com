@@ -325,6 +325,8 @@ body.menu-open {
 .flip {
   display: inline-grid;
   cursor: default;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .flip > span {
@@ -336,9 +338,38 @@ body.menu-open {
   opacity: 0;
 }
 
-.flip:hover > .flip-default,
+/* :hover is gated to real pointers. iOS emulates :hover on tap and keeps it
+   stuck on the element until you tap elsewhere, which fought the tap-toggle
+   below and made taps look like they did nothing. */
+@media (hover: hover) and (pointer: fine) {
+  .flip:hover > .flip-default {
+    opacity: 0;
+  }
+
+  .flip:hover > .flip-hover {
+    opacity: 1;
+  }
+}
+
 .flip.is-flipped > .flip-default {
   opacity: 0;
+}
+
+/* Roomier tap target on touch. The margins below absorb the added padding so
+   spacing is unchanged; they must out-specify `.minimal h1` / `.minimal
+   .tagline`, hence the compound selectors. */
+@media (hover: none), (pointer: coarse) {
+  .minimal .flip {
+    padding: 10px 14px;
+  }
+
+  .minimal h1.flip {
+    margin: -10px -14px 4px;
+  }
+
+  .minimal .tagline.flip {
+    margin: -10px -14px 54px;
+  }
 }
 
 /* Oswald has no kana, so the Japanese name falls back — name the heaviest
@@ -351,7 +382,6 @@ body.menu-open {
   -webkit-text-stroke: 0.022em currentColor;
 }
 
-.flip:hover > .flip-hover,
 .flip.is-flipped > .flip-hover {
   opacity: 1;
 }
