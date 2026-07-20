@@ -5,7 +5,9 @@ https://andy1love.com/. Plain HTML + CSS + a little JS. No build step, no
 subscription — host it anywhere for free.
 
 ```
-index.html            link-in-bio landing page (edit your bio + links here)
+index.html            ACTIVE landing page (currently = template02)
+template01/           saved landing: bio + link buttons  (preview /template01)
+template02/           saved landing: name + socials only (preview /template02)
 storytelling_kony/    the KONY storytelling course site
   index.html          course home (hero, video, cards, contact form)
   what/ who/ why/
@@ -22,6 +24,17 @@ fonts/                self-hosted Oswald + Montserrat (free equivalents of
                       licensed through Squarespace and can't be copied)
 CNAME                 tells GitHub Pages the custom domain
 ```
+
+To switch the live landing page, copy a template over the root index and
+push:
+
+```bash
+cp template01/index.html index.html   # or template02/index.html
+git add -A && git commit -m "switch landing" && git push
+```
+
+(The template copies differ from the root only in their `<title>` and
+og:url — cosmetic; copying as-is works fine.)
 
 ## Preview locally
 
