@@ -32,6 +32,15 @@ var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/abcdwxyz'
     });
   }
 
+  // ---------- hover-swap text (tap to flip on touch devices) ----------
+  if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('.flip'), function (el) {
+      el.addEventListener('click', function () {
+        el.classList.toggle('is-flipped');
+      });
+    });
+  }
+
   // ---------- forms ----------
   function setStatus(form, msg) {
     var el = form.querySelector('.form-status');

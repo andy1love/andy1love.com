@@ -320,6 +320,42 @@ body.menu-open {
   margin: 0 0 64px;
 }
 
+/* Hover swap: both labels stack in the same grid cell, so the box is sized by
+   the wider of the two and nothing shifts when they trade places. */
+.flip {
+  display: inline-grid;
+  cursor: default;
+}
+
+.flip > span {
+  grid-area: 1 / 1;
+  transition: opacity 0.25s ease;
+}
+
+.flip > .flip-hover {
+  opacity: 0;
+}
+
+.flip:hover > .flip-default,
+.flip.is-flipped > .flip-default {
+  opacity: 0;
+}
+
+/* Oswald has no kana, so the Japanese name falls back — name the heaviest
+   Japanese faces explicitly, then thicken further with a stroke. */
+.name-ja {
+  font-family: 'Hiragino Sans W8', 'Hiragino Kaku Gothic StdN W8',
+    'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  -webkit-text-stroke: 0.022em currentColor;
+}
+
+.flip:hover > .flip-hover,
+.flip.is-flipped > .flip-hover {
+  opacity: 1;
+}
+
 /* --------------------------------------------------------------------------
    Home: video
    -------------------------------------------------------------------------- */
