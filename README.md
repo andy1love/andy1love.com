@@ -5,12 +5,17 @@ https://andy1love.com/. Plain HTML + CSS + a little JS. No build step, no
 subscription — host it anywhere for free.
 
 ```
-index.html            home (hero, newsletter, video, cards, contact form)
-what/  who/  why/
-curriculum/  mcu/     subpages (same URLs as the old site)
+index.html            link-in-bio landing page (edit your bio + links here)
+storytelling_kony/    the KONY storytelling course site
+  index.html          course home (hero, video, cards, contact form)
+  what/ who/ why/
+  curriculum/         course subpages
+mcu/                  Marvel filmography poster page
+what/ who/ why/
+curriculum/           redirect stubs (old top-level URLs → storytelling_kony/…)
 404.html              not-found page (GitHub Pages picks it up automatically)
 css/style.css         all styling
-js/site.js            mobile menu + form handling  ← forms configured here
+js/site.js            mobile menu + contact form  ← form configured here
 images/               all images (downloaded from the old site, full res)
 fonts/                self-hosted Oswald + Montserrat (free equivalents of
                       DIN Condensed / Proxima Nova, which are Adobe fonts
@@ -30,10 +35,10 @@ python3 -m http.server 8000
 
 then open http://localhost:8000
 
-## Forms (the one thing Squarespace did server-side)
+## Contact form (the one thing Squarespace did server-side)
 
-A static site has no server to receive form posts. Both forms (mailing-list
-signup and 質問・意見 contact) currently open the visitor's **email app** with
+A static site has no server to receive form posts. The 質問・意見 contact form
+(bottom of the course page) currently opens the visitor's **email app** with
 the message pre-filled, addressed to the email set at the top of
 `js/site.js` (`CONTACT_EMAIL`).
 
@@ -43,11 +48,8 @@ For submissions that arrive in your inbox without the visitor's email app:
    or https://web3forms.com (no account, just an access key).
 2. Create a form, copy its endpoint URL (looks like
    `https://formspree.io/f/abcdwxyz`).
-3. Paste it into `FORM_ENDPOINT` at the top of `js/site.js`. Done — both
-   forms now submit in-page and show a success message in Japanese.
-
-**Before canceling Squarespace:** export your existing mailing-list
-subscribers (Squarespace → Contacts → ⋯ → Export) so you don't lose them.
+3. Paste it into `FORM_ENDPOINT` at the top of `js/site.js`. Done — the
+   form now submits in-page and shows a success message in Japanese.
 
 ## Going live (recommended: GitHub Pages — free, no server to maintain)
 

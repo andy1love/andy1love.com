@@ -1,8 +1,9 @@
-/* andy1love.com — site behavior: mobile menu + forms.
+/* andy1love.com — site behavior: mobile menu + contact form.
  *
- * FORMS: Squarespace used to receive form submissions for you. A static site
- * has no server, so out of the box both forms open the visitor's email app
- * with the message pre-filled (sent to CONTACT_EMAIL below).
+ * CONTACT FORM: Squarespace used to receive form submissions for you. A
+ * static site has no server, so out of the box the 質問・意見 form opens the
+ * visitor's email app with the message pre-filled (sent to CONTACT_EMAIL
+ * below).
  *
  * For "real" form submissions that land in your inbox without the visitor's
  * email app, create a free endpoint at https://formspree.io (or
@@ -85,10 +86,4 @@ var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/abcdwxyz'
     });
   }
 
-  var newsletter = document.querySelector('[data-form="newsletter"]');
-  if (newsletter) {
-    handleSubmit(newsletter, 'メーリングリスト登録 (andy1love.com)', function (data) {
-      return 'メーリングリストに登録お願いします。\n\nEmail: ' + (data.get('email') || '');
-    });
-  }
 })();
